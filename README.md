@@ -1,2 +1,2 @@
 # eCommerce-and-logisitcs-capstone-project
-Data Science student project on eCommerce and logistics study. 
+This project studies an online South African retail store called Stadioalot. The company generates over R38 Million annually from online retail sales and it's marketing platform.  54% of its revenue streams is from retail sales but it faces long term profitability threaten due to operational challenges caused by a rise in product returns which are eroding the company's profits.

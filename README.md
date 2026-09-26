@@ -21,7 +21,9 @@ Stadioalot cannot predict which products will be returned, meaning its current s
 **Stakeholders affected:**
 
 Stadioalot firm: loss of profit margins and incurs higher warehouse costs
+
 Customers: experience inconsistent product satisfaction and delivery outcomes
+
 Warehouse and logistics teams: face increasing strain from processing product returns
 
 Decision to Improve:

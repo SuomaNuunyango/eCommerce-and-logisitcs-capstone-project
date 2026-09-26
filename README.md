@@ -43,6 +43,6 @@ Stadioalot has not yet connected its data to predict and prevent returns at scal
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE](url) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 

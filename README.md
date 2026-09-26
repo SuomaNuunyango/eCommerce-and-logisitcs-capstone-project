@@ -17,6 +17,7 @@ Stadioalot cannot predict which products will be returned, meaning its current s
 4. Allocate warehouse space efficiently on expected product returns
 
 5. Control inventory levels and prevent obsolescence from expected product returns
+   
 
 **Stakeholders affected:**
 
@@ -26,23 +27,21 @@ Customers: experience inconsistent product satisfaction and delivery outcomes
 
 Warehouse and logistics teams: face increasing strain from processing product returns
 
-Decision to Improve:
-Which products should be flagged as high return risk, and what action should be taken (additional quality check, customer warning or removal from marketing to focus on core sales stream)?
 
 **Current Baseline:**
 No systematic return risk flagging system exists. Returns are processed reactively. The current return rate is 29% up as of 2026. Stadioalot doesn't have an operational failure but a data failure. It has 3-5 years of historical data on customer reviews, delivery records, customer service contracts, product catalogues, order transactions, inventory and warehouse  but lacks analytical capabiliies and technologies to gain predicitve insight to study behavioural and hidden patterns from the data.
 
-Proposed Data Science Approach:
+Proposed Data Science approach:
 
-1. Classification model (logistic regression, random forest, XGBoost) to predict return likelihood
+1. Classification model (logistic regression, random forest, XGBoost) to predict return likelihood.
 
-2. NLP on customer reviews to extract sentiment and complaint themes
+2. NLP (Natural language processing) on customer reviews to extract sentiment and complaint texts themes
 
-3. Feature engineering from delivery time, product category, customer history, quality scores
+3. Feature engineering from delivery time, product category, customer history, quality scores into predictive signals that expose hidden patterns for machine learning models.
 
-4. Evaluation using precision, recall, F1 (accounting for 29% class imbalance)
+4. Evaluation using precision, recall, F1 (accounting for 29% class imbalance) to score model performance.
 
-5. Baseline comparison against current no-flagging approach
+5. Baseline comparison of current no-flagging approach against predictive model flagging of product return.
 
 ## Data assets to be used for Stadioalot return prediction (3-5 years historical data)
 

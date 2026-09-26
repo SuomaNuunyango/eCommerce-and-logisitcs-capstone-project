@@ -2,24 +2,32 @@
 
 This project studies an online South African retail store called Stadioalot. 
 
-Current Situation:
+**Current Situation:**
 Stadioalot generates R38M annually, with 54% from retail sales and 27% from its marketing platform. The company's machine-driven pick, pack, and ship operations are highly efficient. However, product returns have increased from 22% (2025) to 29% (2026), eroding retail profit margins and increasing warehouse costs. The company has no systematic method to identify which products are likely to be returned before they are shipped.
 
-Core Problem:
-Stadioalot cannot predict which products will be returned, meaning it cannot:
+**Core Problem:**
+Stadioalot cannot predict which products will be returned, meaning its current system cannot:
 
-1. Flag high-risk products before shipping
+1. Flag high-risk products before shipping them to customers
 
-2. Warn customers about products with high return rates
+2. Warn sales department about products with high return rates risks to reduce reorder
 
 3. Adjust pricing or marketing for high-return products
 
-4. Allocate warehouse space efficiently
+4. Allocate warehouse space efficiently on expected product returns
+
+5. Control inventory levels and prevent obsolescence from expected product returns
+
+**Stakeholders affected:**
+
+Stadioalot firm: loss of profit margins and incurs higher warehouse costs
+Customers: experience inconsistent product satisfaction and delivery outcomes
+Warehouse and logistics teams: face increasing strain from processing product returns
 
 Decision to Improve:
-Which products should be flagged as high-return-risk, and what action should be taken (additional quality check, customer warning or removal from marketing to focus on core sales stream)?
+Which products should be flagged as high return risk, and what action should be taken (additional quality check, customer warning or removal from marketing to focus on core sales stream)?
 
-Current Baseline:
+**Current Baseline:**
 No systematic return risk flagging system exists. Returns are processed reactively. The current return rate is 29% up as of 2026. Stadioalot doesn't have an operational failure but a data failure. It has 3-5 years of historical data on customer reviews, delivery records, customer service contracts, product catalogues, order transactions, inventory and warehouse  but lacks analytical capabiliies and technologies to gain predicitve insight to study behavioural and hidden patterns from the data.
 
 Proposed Data Science Approach:
@@ -34,7 +42,7 @@ Proposed Data Science Approach:
 
 5. Baseline comparison against current no-flagging approach
 
-## Data Assets for Stadioalot Return Prediction
+## Data assets to be used for Stadioalot return prediction (3-5 years historical data)
 
 | Data Asset | Variables Needed | Findings |
 |------------|------------------|----------|

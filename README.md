@@ -43,6 +43,6 @@ Stadioalot has not yet connected its data to predict and prevent returns at scal
 
 # License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE]([url](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/LICENSE)) file for details.
 
 

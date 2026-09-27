@@ -1,3 +1,4 @@
-# Folder contains the following:
+# Index:
 
-Data type needed saved as pdf file called: Data request for eCommerce and logistics capstone project
+1. Data type table eCommerce and logistics capstone project
+2. RAAIDD log

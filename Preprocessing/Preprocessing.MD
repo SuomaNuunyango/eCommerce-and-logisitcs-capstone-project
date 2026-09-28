@@ -31,3 +31,40 @@ Inspecting the dataset of the predetermined columns needed to before training th
     "user_state",
     "user_reg_date",
     "return"]
+If the list isn't empty the code will display an error naming the missing column using this code: 
+**if missing_columns:
+    raise ValueError(
+        f"The following required columns are missing: {missing_columns}")**
+
+
+Python row 24-25:
+
+Inspects the dataset for duplicated rows and columns using the duplicate() function. If duplicates exist the row and column will be dropped (removed) using the drop_duplicate() function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+P

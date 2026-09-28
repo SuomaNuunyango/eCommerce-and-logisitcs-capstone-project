@@ -42,7 +42,15 @@ Python row 24-25:
 This step inspects the dataset for duplicate rows and columns using the duplicated() function. If duplicates are found, they are removed using the drop_duplicates() and transposition methods. Eliminating duplicate rows and columns is critical to preventing bias and false patterns, which can skew our analytics and cause the machine learning model to overfit during training.
 
 
-P
+Python row 30-31:
+
+This cell converts all date columns into pandas datetime objects. Standardizing the date format is essential because these columns serve as independent variables for calculating derivative metrics, such as user age or delivery delays (the time elapsed between the order date and delivery date). Setting errors='coerce' automatically transforms invalid dates into NaT (Not a Time) missing values, allowing us to easily identify and handle unparseable data.
+
+date columns inspected= [
+    "order_date",
+    "delivery_date",
+    "user_dob",
+    "user_reg_date"]
 
 
 

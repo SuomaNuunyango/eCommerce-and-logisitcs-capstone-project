@@ -39,32 +39,27 @@ If the list isn't empty the code will display an error naming the missing column
 
 Python row 24-25:
 
-Inspects the dataset for duplicated rows and columns using the duplicate() function. If duplicates exist the row and column will be dropped (removed) using the drop_duplicate() function.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This step inspects the dataset for duplicate rows and columns using the duplicated() function. If duplicates are found, they are removed using the drop_duplicates() and transposition methods. Eliminating duplicate rows and columns is critical to preventing bias and false patterns, which can skew our analytics and cause the machine learning model to overfit during training.
 
 
 P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

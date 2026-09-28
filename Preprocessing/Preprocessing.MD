@@ -52,7 +52,7 @@ date columns inspected= [
     "user_dob",
     "user_reg_date"]
 
-
+Date scaffolding was implemented to handle unparseable values within the delivery_dates and user_dob columns. To preserve data integrity and retain 9,318 delivery records and 8,725 user date-of-birth records otherwise flagged as missing (NaT), these variables were mapped onto continuous date ranges. Utilizing a continuous timeline allows the model to handle these records constructively without resorting to data deletion.
 
 
 

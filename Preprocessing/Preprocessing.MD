@@ -57,15 +57,19 @@ Date scaffolding was implemented to handle unparseable values within the deliver
 
 Python row 36:
 
-Categorical data cleaning was performed iteratively across the four primary features: item_size, item_color, user_title, and user_state. Each column underwent a standardized preprocessing pipeline: .astype("string") enforced consistent data types, .str.strip() eliminated leading and trailing whitespace, and .str.lower() normalized the text to prevent duplicate categories caused by casing variations.Following standardization, item_color was identified as the only column containing missing values. Because the missing data accounted for a negligible 0.06% of total records, mode imputation via .mode(dropna=True) was applied to fill the blanks with the most frequent color. This approach successfully handled the missing data without compromising the integrity of the dataset.
+Categorical data cleaning was performed iteratively across the four primary features: item_size, item_color, user_title, and user_state. Each column underwent a standardised preprocessing pipeline: .astype("string") enforced consistent data types, .str.strip() eliminated leading and trailing whitespace, and .str.lower() normalised the text to prevent duplicate categories caused by casing variations.Following standardisation, item_color was identified as the only column containing missing values. Because the missing data accounted for a negligible 0.06% of total records, mode imputation via .mode(dropna=True) was applied to fill the blanks with the most frequent color. This approach successfully handled the missing data without compromising the integrity of the dataset.
 
 
+Python row 38:
 
-
-
-
-
-
+Converting the listed columns to numeric columns data type. numeric_columns = [
+    "order_item_id",
+    "item_id",
+    "brand_id",
+    "item_price",
+    "user_id"]
+pd.to_numeric() function converts the columns values to numbers. 
+errors="coerce" function turns values that cannot be converted to Nan (missing values) to identify how many columns are containing non convertible so that they can be engineered to a preferred standard/ format. NaN values are imputed with the mean accept, user_id column which was first converted to "anonymous" to calculate if the total count is below 10%. I applied a rule that should the count percentage is below 10% then the column anonymous will be replace with the mean ID, otherwise drop the column. 10% is reasonable as it would insignificantly reduce the quality of the data if the user_id is imputed with the mean.
 
 
 

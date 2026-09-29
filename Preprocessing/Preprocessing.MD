@@ -82,7 +82,9 @@ To confirm that the convertion of values was successful to 0 and ! only, I used 
     raise ValueError("The 'return' column must contain only 0 and 1.")
 To print the totals upon successful conversion a print outcomes return counts of 1 with percentage and for not returned it counts the 0 with percentage.
 
+Python row 44
 
+This part just expands the code to display the totals of returns and not retuned more clearly for better visual display with total percentages.
 
 
 

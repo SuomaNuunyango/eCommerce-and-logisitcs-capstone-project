@@ -1,4 +1,4 @@
-#Preprocessing details to the BADS_WS1920_known.csv (Training dataset).
+**Preprocessing details to the BADS_WS1920_known.csv (Training dataset).**
 
 The following details are subject to change based on improvements made to the python code.
 
@@ -72,9 +72,19 @@ pd.to_numeric() function converts the columns values to numbers.
 errors="coerce" function turns values that cannot be converted to Nan (missing values) to identify how many columns are containing non convertible so that they can be engineered to a preferred standard/ format. NaN values are imputed with the mean accept, user_id column which was first converted to "anonymous" to calculate if the total count is below 10%. I applied a rule that should the count percentage is below 10% then the column anonymous will be replace with the mean ID, otherwise drop the column. 10% is reasonable as it would insignificantly reduce the quality of the data if the user_id is imputed with the mean.
 
 
+Python row 42
 
+The return_target column values are classified into binary outcome lables of 1 & 0 using code df["return"] = pd.to_numeric(df["return"], errors="coerce"), where errors=("coerce") finds the blanks and invalid answers to report an error. 
+All missing and invalid values exisitng will stop the code from reading and report an error by using code if missing_count > 0:
+    raise ValueError("The target column 'return' contains missing values.").
 
+To confirm that the convertion of values was successful to 0 and ! only, I used if not unique_target_values.issubset({0, 1}):
+    raise ValueError("The 'return' column must contain only 0 and 1.")
+To print the totals upon successful conversion a print outcomes return counts of 1 with percentage and for not returned it counts the 0 with percentage.
 
+Python row 44
+
+This part just expands the code to display the totals of returns and not retuned more clearly for better visual display with total percentages.
 
 
 

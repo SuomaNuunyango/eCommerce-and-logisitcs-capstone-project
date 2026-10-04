@@ -1,6 +1,6 @@
 **Feature engineering details to the BADS_WS1920_known.csv (Training dataset).**
 
-The following details are subject to change based on improvements made to the python code called [Feature engineering](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Preprocessing/Feature%20engineering.ipynb) file.
+The following details are subject to change based on improvements made to the python code called [Feature engineering.ipynb](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Preprocessing/Feature%20engineering.ipynb) file.
 
 Python row 11: 
 

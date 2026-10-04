@@ -1,6 +1,6 @@
 **Preprocessing details to the BADS_WS1920_known.csv (Training dataset).**
 
-The following details are subject to change based on improvements made to the python code called Feature engineering.ipynb file .
+The following details are subject to change based on improvements made to the python code called [Feature engineering.ipynb](Preprocessing/Feature engineering.ipynb) file .
 
 Python row 46: 
 

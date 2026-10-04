@@ -1,7 +1,7 @@
 **Preprocessing details to the BADS_WS1920_known.csv (Training dataset).**
 
 
-The following details are subject to change based on improvements made to the python code called Preprocessing/Preprocessing.ipynb file.
+The following details are subject to change based on improvements made to the python code called Preprocessing file.
 
 Python row 46: 
 
@@ -86,10 +86,4 @@ To print the totals upon successful conversion a print outcomes return counts of
 Python row 44
 
 This part just expands the code to display the totals of returns and not retuned more clearly for better visual display with total percentages.
-
-
-
-
-
-
 

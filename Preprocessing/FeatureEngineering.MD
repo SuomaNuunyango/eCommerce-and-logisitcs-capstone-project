@@ -2,41 +2,68 @@
 
 The following details are subject to change based on improvements made to the python code called [Feature engineering.ipynb]() file.
 
-Python row 46: 
+Python row 11: 
 
 
 imported the relevent libraries needed for preprocessing. 
 
 **import pandas as pd
-from pathlib import Path** 
-
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
 
 Panda turns the raw text data into DataFrame which makes it easy to  clean.
-Pathlibhelps find the csv.file on the computer and turns text strings into smart path objects.
+StandardScaler, OneHotEncoder, ColumnTransformer, SimpleImputer, and Pipeline are scikit-learn tools for scaling, encoding, imputing, and organizing preprocessing steps.
 
-Python row 32:
+missing_by_column = df.isna().sum() used to counts missing values separately for every column to help decide whether to remove rows, fill missing values or use another treatment before modelling dataset.
 
-Inspecting the dataset of the predetermined columns needed to before training the models selected. required_columns = [
-    "order_item_id",
+Python row 12:
+
+Created a list called date_columns = [
     "order_date",
     "delivery_date",
-    "item_id",
-    "item_size",
-    "item_color",
-    "brand_id",
-    "item_price",
-    "user_id",
-    "user_title",
     "user_dob",
-    "user_state",
-    "user_reg_date",
-    "return"]
-If the list isn't empty the code will display an error naming the missing column using this code: 
-**if missing_columns:
-    raise ValueError(
-        f"The following required columns are missing: {missing_columns}")**
+    "user_reg_date"]
+
+Contains variables with dates that need to be converted to standard Datetime format. Datetime values can be used in calculations and also makes it easier to identify missing values. While errors="coerce" turns values that cannot be parsed into NaT (“Not a Time”), pandas treats then as missing-date value.
+
+pd.to_datetime() parses the values as dates.
+
+Python row 13:
+
+I started off by printing the column’s data type, first five values, and count of missing or invalid dates using code: 
+for column in date_columns:
+    df[column] = pd.to_datetime(df[column], errors="coerce")
+
+    print(f"\n{column}:")
+    print("Data type:", df[column].dtype)
+    print("Sample values:")
+    print(df[column].head())
+    print("Missing/invalid dates:", df[column].isna().sum())
+It converts values to pandas datetime format and unparseable values to NaT translated by pandas as missing-date value.
 
 
-Python row 24-25:
 
-This step inspects the dataset for duplicate rows and columns using the duplicated() function. If duplicates are found, they are removed using the drop_duplicates() and transposition methods. Eliminating duplicate rows and columns is critical to preventing bias and false patterns, which can skew our analytics and cause the machine learning model to overfit during training.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

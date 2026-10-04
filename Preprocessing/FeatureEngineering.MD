@@ -124,7 +124,7 @@ Code negative_mask = df["delivery_days"].lt(0) marks rows where delivery appears
 Prints the row counts, the percentage of rows with negative durations, and the mean of the negative durations.
 Displays up to 20 rows with missing or invalid durations, showing only available columns from the requested list.
 
-Python row 16:
+Python row 16: 
 
 
 

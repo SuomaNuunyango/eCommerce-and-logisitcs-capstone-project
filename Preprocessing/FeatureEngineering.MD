@@ -62,12 +62,47 @@ Then all missing (Blank) cells are filled with median in the delivery_day column
 
 Imputation was initially used to test if its the appropriate measure to fill the  missing values, which is later changed once a better method seeming appropriate is indetified.
 
-Customer_age_years uses todays date and user_dob. Each time the code is run, clients age changes to get their current age. Because User_dob contains 8725 missing values to avoid creating more invalid data cells I avoided using order_date to get a much more current prediction.
+Customer_age_years uses todays date and user_dob to test the viability of using this method to get the best age calculation.
 
 Code df["customer_age_years"] = (today.year - dob.dt.year - birthday_not_yet_reached.astype("Int64")).astype("Int64") creates an integer age column based on the date of birth and today’s date. Missing birth dates remain missing.
 
 Only delivery_date is imputed. user_dob is not filled; it is used to calculate age where possible to test if this statistical method is suiting for prediction.
 
+Python row 14:
+
+Recalculating customer_age_years using customer’s birth date and the order date, expressed approximately in years. Using the order date gives age at the time of the transaction, rather than age today using code: df["customer_age_years"] = (
+    (df["order_date"] - df["user_dob"]).dt.days / 365.25)
+
+Changed the code to df.loc[
+    ~df["customer_age_years"].between(18, 150),
+    "customer_age_years"] = pd.NA
+df["customer_age_missing"] = df["customer_age_years"].isna().astype(int)
+This is to include missing values when age is outside 18-150 years by using 1 when age is missing or invalid, and 0 otherwise.
+
+Because I noticed missing values in delivery_days are caused by negative values by subtracting delivery_dates and ordder_dates when delivery dates come before order dates. I adjusted the code to filter out the missing values: df["delivery_days"] = (df["delivery_date"] - df["order_date"]).dt.days and df.loc[df["delivery_days"] < 0, "delivery_days"] = pd.NA.
+
+Named a new features called  delivery_method, delivery_status and insurance_status. They contain inferred labels to help minimise the columns by dimensionalisation to reduce the features not needed for model training.
+
+delivery_status labels and code include: status_by_method = {
+    "Road": "slight damage",
+    "Flight": "no damage",
+    "Shipping": "minor damage"}
+df["Delivery_status"] = df["Delivery_method"].map(status_by_method)
+
+The code assumes a relationship between delivery method and damage without actual source. The aim is to find a relationship between delivery method and damage for every return. 
+
+Delivery_method labels and codes include: df["Delivery_method"] = pd.NA
+df.loc[df["delivery_days"] < 7, "Delivery_method"] = "Flight"
+df.loc[df["delivery_days"].between(7, 13), "Delivery_method"] = "Road"
+df.loc[df["delivery_days"] >= 14, "Delivery_method"] = "Shipping"
+
+The aim is to find a relationship between delivery days and delivery mode for every return. 
+
+Insurance_status labels and code include:df["Insurance_status"] = "not insured"
+insured_condition = ((df["item_price"] > 50)& (df["Delivery_method"].isin(["Flight", "Shipping"])))
+df.loc[insured_condition, "Insurance_status"] = "insured"
+
+The aim is to find a relationship between delivery method and item prices for every return. 
 
 
 

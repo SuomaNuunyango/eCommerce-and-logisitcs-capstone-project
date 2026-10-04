@@ -4,7 +4,6 @@ The following details are subject to change based on improvements made to the py
 
 Python row 11: 
 
-
 imported the relevent libraries needed for preprocessing. 
 
 **import pandas as pd
@@ -104,7 +103,28 @@ df.loc[insured_condition, "Insurance_status"] = "insured"
 
 The aim is to find a relationship between delivery method and item prices for every return. 
 
+To check and inspect these columns: customer_age_years, customer_age_missing, delivery_days, Delivery_method, Delivery_status, and Insurance_status, I used value_counts(dropna=False) includes missing values in the category counts. describe() gives statistics such as count, mean, standard deviation, minimum and quartiles for numeric columns.
 
+Finally, it prints the first ten rows of the derived columns for a quick inspection.
+
+Python row 15:
+
+I performed a data quality check on delivery_date and order_date to determine the actual cause of missing and invalid values in the new feature delivery_days.
+
+Code df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+df["delivery_date"] = pd.to_datetime(df["delivery_date"], errors="coerce")
+Converts order_date and delivery_date to datetime values. Unparseable dates become NaT.
+Calculates delivery_days as delivery date minus order date.
+Creates masks to identify:
+Missing: either date is missing/invalid, or the calculated duration is missing.
+Negative: delivery occurred before the order date.
+
+Code negative_mask = df["delivery_days"].lt(0) marks rows where delivery appears before the order date.
+
+Prints the row counts, the percentage of rows with negative durations, and the mean of the negative durations.
+Displays up to 20 rows with missing or invalid durations, showing only available columns from the requested list.
+
+Python row 16:
 
 
 

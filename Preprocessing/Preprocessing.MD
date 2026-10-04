@@ -1,11 +1,11 @@
 **Preprocessing details to the BADS_WS1920_known.csv (Training dataset).**
 
-The following details are subject to change based on improvements made to the python file called Preprocessing.ipynb.
+The following details are subject to change based on improvements made to the Python file called [Preprocessing.ipynb](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Preprocessing/Preprocessing.ipynb).
 
 Python row 46: 
 
 
-imported the relevent libraries needed for preprocessing. 
+imported the relevant libraries needed for preprocessing. 
 
 **import pandas as pd
 from pathlib import Path** 
@@ -44,7 +44,7 @@ This step inspects the dataset for duplicate rows and columns using the duplicat
 
 Python row 30-31, 42 and 47:
 
-This cell converts all date columns into pandas datetime objects. Standardizing the date format is essential because these columns serve as independent variables for calculating derivative metrics, such as user age or delivery delays (the time elapsed between the order date and delivery date). Setting errors='coerce' automatically transforms invalid dates into NaT (Not a Time) missing values, allowing us to easily identify and handle unparseable data.
+This cell converts all date columns into pandas datetime objects. Standardising the date format is essential because these columns serve as independent variables for calculating derivative metrics, such as user age or delivery delays (the time elapsed between the order date and delivery date). Setting errors='coerce' automatically transforms invalid dates into NaT (Not a Time) missing values, allowing us to easily identify and handle unparseable data.
 
 date columns inspected= [
     "order_date",
@@ -52,7 +52,7 @@ date columns inspected= [
     "user_dob",
     "user_reg_date"]
 
-Date scaffolding was implemented to handle unparseable values within the delivery_dates and user_dob columns. To preserve data integrity and retain 9,318 delivery records and 8,725 user date-of-birth records otherwise flagged as missing (NaT), these variables were mapped onto continuous date ranges. Utilizing a continuous timeline allows the model to handle these records constructively without resorting to data deletion.
+Date scaffolding was implemented to handle unparseable values within the delivery_dates and user_dob columns. To preserve data integrity and retain 9,318 delivery records and 8,725 user date-of-birth records otherwise flagged as missing (NaT), these variables were mapped onto continuous date ranges. Utilising a continuous timeline allows the model to handle these records constructively without resorting to data deletion.
 
 
 Python row 36:
@@ -74,21 +74,15 @@ errors="coerce" function turns values that cannot be converted to Nan (missing v
 
 Python row 42
 
-The return_target column values are classified into binary outcome lables of 1 & 0 using code df["return"] = pd.to_numeric(df["return"], errors="coerce"), where errors=("coerce") finds the blanks and invalid answers to report an error. 
-All missing and invalid values exisitng will stop the code from reading and report an error by using code if missing_count > 0:
+The return_target column values are classified into binary outcome labels of 1 & 0 using code df["return"] = pd.to_numeric(df["return"], errors="coerce"), where errors=("coerce") finds the blanks and invalid answers to report an error. 
+All missing and invalid values existing will stop the code from reading and report an error by using code if missing_count > 0:
     raise ValueError("The target column 'return' contains missing values.").
 
-To confirm that the convertion of values was successful to 0 and ! only, I used if not unique_target_values.issubset({0, 1}):
+To confirm that the conversion of values was successful to 0 and ! only, I used if not unique_target_values.issubset({0, 1}):
     raise ValueError("The 'return' column must contain only 0 and 1.")
 To print the totals upon successful conversion a print outcomes return counts of 1 with percentage and for not returned it counts the 0 with percentage.
 
 Python row 44
 
 This part just expands the code to display the totals of returns and not retuned more clearly for better visual display with total percentages.
-
-
-
-
-
-
 

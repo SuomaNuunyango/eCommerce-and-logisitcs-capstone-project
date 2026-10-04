@@ -1,7 +1,7 @@
 **Preprocessing details to the BADS_WS1920_known.csv (Training dataset).**
 
 
-The following details are subject to change based on improvements made to the python code called [Preprocessing.ipynb](Preprocessing/Preprocessing.ipynb) file.
+The following details are subject to change based on improvements made to the python code called [Preprocessing.ipynb](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Preprocessing/Preprocessing.ipynb) file.
 
 Python row 46: 
 

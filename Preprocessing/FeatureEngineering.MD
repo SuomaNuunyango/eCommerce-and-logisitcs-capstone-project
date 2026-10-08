@@ -203,8 +203,8 @@ y = model_df["return"].astype(int) y contains the target values the model will l
 
 Identify numeric and categorical columns
 
-numeric_features = [...]
-categorical_features = [...]
+numeric_features = []
+categorical_features = []
 
 The code treats some columns as numbers and others as categories.
 This matters because the two types need different preprocessing required numeric data to be scaled, while categories such as "Flight" or "blue" need to be encoded. I included a build preprocessing pipelines

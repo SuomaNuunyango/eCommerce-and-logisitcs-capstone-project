@@ -126,6 +126,211 @@ Displays up to 20 rows with missing or invalid durations, showing only available
 
 Python row 16: 
 
+After converting date column to pandas datetime format, calculated the new feature customer_age_years by subtracting order_date from user_dob/ 365.25, then all ages outside 18–150 are treated as invalid and replaced with a missing value. Missing dates also produce a missing age. using code: 
+
+df.loc[
+    ~df["customer_age_years"].between(18, 150),
+    "customer_age_years"
+] = pd.NA
+
+Missing ages are replaced with the average of the valid ages.
+
+Corrections to delivery_days calculation include adjusting the delivery dates by adding 7860 days to results that give negative delivery_dates. This hand coded correction ensures the delivery dates resulting in negative results are recalculated
+using code: 
+
+print(f"Negative delivery durations to adjust: {negative_mask.sum()}")
+df.loc[negative_mask, "delivery_date"] += pd.Timedelta(days=7860)
+
+Added new features- delivery_method, delivery_status and Insurance _status to find out if there is any relationship between returns and the method of delivery (Road, Shipping, Flight), the status in which the goods arrive after delivery (Minor damage, slight damage, no damage) and insurance provision on goods.
+
+The code assigns a method based on delivery time:
+
+Fewer than 7 days = "Flight"
+7–13 days = "Road"
+14 or more days = "Shipping"
+
+If delivery_days is missing, no condition matches, so the method remains missing.
+
+code used: df["Delivery_method"] = pd.NA
+df.loc[df["delivery_days"] < 7, "Delivery_method"] = "Flight"
+df.loc[df["delivery_days"].between(7, 13), "Delivery_method"] = "Road"
+df.loc[df["delivery_days"] >= 14, "Delivery_method"] = "Shipping"
+
+Each delivery method is mapped to a status. Missing or unmapped methods produce a missing status using code: 
+status_by_method = {
+    "Road": "slight damage",
+    "Flight": "no damage",
+    "Shipping": "minor damage",}
+df["Delivery_status"] = df["Delivery_method"].map(status_by_method)
+
+Everyone starts as "not insured". A row becomes "insured" only if the item costs more than 50 and the delivery method is Flight or Shipping. code used:
+
+df["Insurance_status"] = "not insured"
+insured_condition = (
+    (df["item_price"] > 50)
+    & df["Delivery_method"].isin(["Flight", "Shipping"]))
+df.loc[insured_condition, "Insurance_status"] = "insured"
+
+Python row 21:
+
+This code creates a separate DataFrame containing only those columns to help prevent unintended changes to the original df
+model_columns = [
+    "customer_age_years",
+    "Delivery_method",       
+    "Delivery_status",      
+    "Insurance_status",
+    "order_item_id",
+    "item_id",
+    "item_size",
+    "item_color",
+    "brand_id",
+    "item_price",
+    "user_state",
+    "return"]
+
+model_df = df[model_columns].copy()
+
+model_df = model_df.replace([np.inf, -np.inf], np.nan)
+model_df = model_df.dropna(subset=["return"]).copy()
+Infinite values are changed to missing values. Rows with a missing "return" are then removed because they have no known answer for training or evaluation at this point.
+
+          
+X = model_df.drop(columns=["return"]) X contains the input features.
+y = model_df["return"].astype(int) y contains the target values the model will learn to predict.
+      
+.astype(int) is just converts the target to integers, as expected for many classification tasks. This assumes "return" contains values that can be converted to integers, such as 0 and 1.
+
+
+Identify numeric and categorical columns
+
+numeric_features = [...]
+categorical_features = [...]
+
+The code treats some columns as numbers and others as categories.
+This matters because the two types need different preprocessing required numeric data to be scaled, while categories such as "Flight" or "blue" need to be encoded. I included a build preprocessing pipelines
+
+Numeric pipeline
+
+numeric_pipeline = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())])
+      For numeric columns:[
+    "customer_age_years",
+    "order_item_id",
+    "item_id",
+    "brand_id",
+    "item_price"]
+
+Missing values are filled with that column’s median. Values are standardized so they are centered around zero and have roughly comparable scales.
+
+Categorical pipeline
+
+categorical_pipeline = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("encoder", OneHotEncoder(
+        handle_unknown="ignore",
+        sparse_output=False))])
+      For categorical columns:[
+    "Delivery_method",
+    "Delivery_status",
+    "Insurance_status",
+    "item_size",
+    "item_color",
+    "user_state"]
+
+Missing values are filled with the most common category.
+
+
+handle_unknown= "ignore" (prevents errors if the test data contains a category that was not present in the training data) sparse_output= "False" (asks for a regular dense array rather than a sparse matrix)
+
+I then combined the pipelines using code:
+
+preprocessor = ColumnTransformer 
+(transformers=[("num", numeric_pipeline, numeric_features),
+               ("cat", categorical_pipeline, categorical_features)])
+
+Because one cannot process numbers and text the same way. This setup allows me to clean, scale and encode the dataset in one clean before production pipelines to prevent any data leakages.
+
+This code is the set of instructions for doing that:
+
+("num", numeric_pipeline, numeric_features)
+means: Use numeric_pipeline on the number columns.
+
+("cat", categorical_pipeline, categorical_features)
+means: “Use categorical_pipeline on the word columns.
+
+So ColumnTransformer is the organizer: it sends each column to the right set of instructions, then joins the prepared columns back together.
+
+ColumnTransformer () function helps split the dataset manually, so that you target specific columns for cleaning and transformation then combined them automatically later.
+
+
+Split the data before fitting preprocessing.
+
+Data is split into training and testing sets before preprocessing to prevent data leakage.
+Data leakage happens when information from your test set accidentally leaks into your training process. The split happens before fitting the imputer, scaler, and encoder to avoid data leakage. If preprocessing were fitted using the test set, information from that set could influence the training process.
+
+This code is the set of instructions for doing that:
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y)
+          
+This reserves 20% of the rows for testing and uses the remaining 80% for training.
+
+random_state=42 makes the split reproducible.
+
+stratify=y tries to preserve the target-class proportions in both sets. 
+
+Fit preprocessing on training data, then apply it to both sets
+
+X_train_encoded = preprocessor.fit_transform(X_train)
+X_test_encoded = preprocessor.transform(X_test)
+      
+fit_transform learns preprocessing details from the training data using statistical methods such as medians, common categories and scaling statistics—and transforms the training features.
+transform applies those same learned details to the test features. It does not relearn them from the test data.
+
+feature_names = preprocessor.get_feature_names_out() function retrieves names for the processed features after learning the preparation rules from the training data, uses those rules on the test data and get the names of the prepared columns.
+
+Convert the processed arrays back to DataFrames
+
+X_train_final = pd.DataFrame()
+X_test_final = pd.DataFrame()
+
+Scikit-learn preprocessing returns arrays. These lines turn the arrays into pandas DataFrames with feature names, making the results easier to inspect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

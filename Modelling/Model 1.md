@@ -1,6 +1,6 @@
 Modelling details to the BADS_WS1920_known.csv (Training dataset).
 
-The following details are subject to change based on improvements made to the Python file called [Model 1 (logisitc Regression)]().
+The following details are subject to change based on improvements made to the Python file called [Model 1 (logisitc Regression)](Modelling/Model 1(Logistical Regression).ipynb).
 
 
 Python row 3:

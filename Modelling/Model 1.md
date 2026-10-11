@@ -12,7 +12,7 @@ from model_utils import (
     report_results,
     RANDOM_STATE,)
     
-TASKS
+Tasks defined:
 
 1. Path handles file paths
 
@@ -96,5 +96,41 @@ zero_one_loss(y_part, curve_model.predict(X_part))
 zero_one_loss(y_val, curve_model.predict(X_val))
 
 Because output_dir is ".", it is saved in the current working directory. plt.show() displays the chart, and the final print reports the full resolved save path
+
+
+Python row []
+
+code: param_grid = {
+    "classifier__C": [0.001, 0.01, 0.1, 1.0, 10.0, 100.0],
+    "classifier__penalty": ["l1", "l2"],
+    "classifier__class_weight": [None, "balanced"],}
+    
+Settings to test if best hyperparameters can be found using GridSearchCV. GridSearchCV tests every combination of these options:
+
+C controls regularization strength. Smaller values mean stronger regularization.
+
+penalty chooses the type of regularization.
+
+class_weight tests whether balancing class weights improves performance.
+
+The classifier__ prefix tells the pipeline which step the setting belongs to
+
+then configured the search with grid_search = GridSearchCV(
+    estimator=model,
+    param_grid=param_grid,
+    cv=5,
+    scoring="roc_auc",
+    n_jobs=-1)
+
+The search uses 5-fold cross-validation: it trains and evaluates each setting across five splits of the training data. It selects the settings with the highest average ROC-AUC, a measure of how well the model distinguishes between classes. n_jobs=-1 uses all available CPU cores to speed up the search
+
+then ran the search using code: grid_search.fit(X_train, y_train) to get best parameter combinations using only the training data.
+    
+
+
+
+
+
+
 
 

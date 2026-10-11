@@ -29,21 +29,31 @@ Pipeline() function chains preprocessing and classification together. This helps
 Logistic Regression hyperparameter settings:
 
 C=1.0: Sets the strength of regularization (smaller values apply stronger regularization).
+
 penalty="l2" Using L2 regularization to discourage overly large coefficients.
+
 solver="liblinear": liblinear is the Optimization method that works well for many smaller binary-classification problems.
+
 class_weight="balanced": Adjusts weights to account for class imbalance.
+
 max_iter=2000: Allows more iterations for the solver to converge.
+
 random_state=RANDOM_STATE: Makes results more reproducible where randomness is involved.
 
 The following functions helped with the following capacilities:
 
 model.fit(): Learns the preprocessing steps and model parameters using only the training data.
+
 report_results(): Evaluates predictions on the test set. 
-joblib.dump(): Saves the complete fitted pipeline—including preprocessing and classifier—to artifacts/logistic_regression_pipeline.joblib. 
+
+joblib.dump(): Saves the complete fitted pipeline—including preprocessing and classifier—to 
+artifacts/logistic_regression_pipeline.joblib. 
+
 
 X_train, X_test, y_train, y_test = load_model_data() loads the CSV file and returns features (X) and target labels (y) by splitting dataset into training and test sets. 
 
 
 
-report_results(...): Evaluates predictions on the test set. The specific metrics depend on the function’s implementation.
-joblib.dump(...): Saves the complete fitted pipeline—including preprocessing and classifier—to artifacts/logistic_regression_pipeline.joblib. You can load it later with joblib.load(...) and use it to make predictions.
+
+
+

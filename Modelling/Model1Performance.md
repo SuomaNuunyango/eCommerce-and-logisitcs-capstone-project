@@ -71,17 +71,26 @@ The notebook also plots training and validation classification error against tra
 | Weighted average | 0.58 | 0.58 | 0.58 | 20,000 |
 
 
-
 ## 4. Results and interpretation
 
-The notebook's recorded grid search selected `C=1.0`, `class_weight='balanced'`, and `penalty='l2'`, which matched the initial model settings. Its recorded mean cross-validation ROC-AUC was **0.6062**, compared with the recorded test ROC-AUC of **0.6088**.
+This model performs significantly worse. Its overall accuracy dropped to 57.80%, which is barely any better than flipping a coin.
 
-These ROC-AUC values are only modestly above 0.5, which represents chance-level ranking. The close cross-validation and test ROC-AUC values suggest similar ranking performance across those evaluations, but they do **not** by themselves prove that the model generalises well or that the predictions are useful. Accuracy, precision, recall, F1-score and the confusion matrix should be reported alongside ROC-AUC.
+• Accuracy: 57.80% (0.5780)
+	• Out of the `20,000` test cases, the model guessed correctly about 58% of the time. It is noticeably worse than the Random Forest models (which at 62%).
+  
+• ROC-AUC: 60.88% (0.6088)
+	• At 0.61, this model has an incredibly weak ability to separate the "Returned" group from the "Not Returned" group.
 
-Logistic Regression models a linear relationship between the input features and the target features. If the relationship between the engineered features and returns is more complex, this model may underfit. The error versus training-size plot should be reviewed to see whether training and validation errors remain high or diverge.
+• Confusion Matrix
 
+• Correct "Not Returned" (6,339): It successfully identified 6,339 cases of `0`.
+• False Alarms (4,497): It guessed `1` (Returned) when the true answer was actually `0`. This is a major weak spot—it triggered way more false alarms than XGBoost did (which only had about 3,383).
+• Missed Cases (3,942): It missed 3,942 cases of `1`, guessing they were `0`.
+• Correct "Returned" (5,222): It successfully caught 5,222 cases of `1`.
 
-## 5. How to run
+The dataset seems to have complex, messy patterns, which the simpler Logistic Regression model just can't grasp. This tells us that the data has non-linear relationships (complex logic loops that a straight mathematical line cannot easily separate.
+
+## 5. How to use the ipynb file
 
 1. First access the following notebook and csv file, `model_utils.py`, and `cleaned_model_dataset.csv` to use for model training.
 2. Update the python notebook file `Model 1 (Logistical Regression)(1).ipynb` with the link to your `data_path` values based on file's location on your computer.

@@ -1,12 +1,25 @@
 Python row 3:
 
 Importing relevent libraries: 
+from pathlib import Path
+import joblib
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+
+from model_utils import (
+    load_model_data,
+    make_preprocessor,
+    report_results,
+    RANDOM_STATE,)
+    
 
 Path handles file paths
+
 joblib saves the trained model
+
 scikit-learn provides Logistic Regression and the pipeline. 
 
-The functions from model_utils handle data loading, preprocessing, evaluation, and the random seed.
+model_utils handle data loading, preprocessing, evaluation and the random seed.
 
 Loaded clean dataset using load_model_data() function
 After loadning the cleaned dataset from feature engineering, I Created an artifacts folder for the saved model. parents=True creates any missing parent folders (exist_ok=True avoids an error if the folder already exists).

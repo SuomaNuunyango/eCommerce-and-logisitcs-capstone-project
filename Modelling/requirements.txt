@@ -1,0 +1,9 @@
+
+pandas 3.0.1
+numpy 2.5.4
+matplotlib 3.10.8
+scikit-learn 1.9.1
+joblib 1.6.0
+xgboost 3.4.1
+jupyter
+ipykernel 7.2.0

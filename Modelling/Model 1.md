@@ -12,14 +12,15 @@ from model_utils import (
     report_results,
     RANDOM_STATE,)
     
+TASKS
 
-Path handles file paths
+1. Path handles file paths
 
-joblib saves the trained model
+2. joblib saves the trained model
 
-scikit-learn provides Logistic Regression and the pipeline. 
+3. scikit-learn provides Logistic Regression and the pipeline. 
 
-model_utils handle data loading, preprocessing, evaluation and the random seed.
+4. model_utils handle data loading, preprocessing, evaluation and the random seed.
 
 Loaded clean dataset using load_model_data() function
 After loadning the cleaned dataset from feature engineering, I Created an artifacts folder for the saved model. parents=True creates any missing parent folders (exist_ok=True avoids an error if the folder already exists).
@@ -28,17 +29,17 @@ Pipeline() function chains preprocessing and classification together. This helps
 
 Logistic Regression hyperparameter settings:
 
-C=1.0: Sets the strength of regularization (smaller values apply stronger regularization).
+1. C=1.0: Sets the strength of regularization (smaller values apply stronger regularization).
 
-penalty="l2" Using L2 regularization to discourage overly large coefficients.
+2. penalty="l2" Using L2 regularization to discourage overly large coefficients.
 
-solver="liblinear": liblinear is the Optimization method that works well for many smaller binary-classification problems.
+3. solver="liblinear": liblinear is the Optimization method that works well for many smaller binary-classification problems.
 
-class_weight="balanced": Adjusts weights to account for class imbalance.
+4. class_weight="balanced": Adjusts weights to account for class imbalance.
 
-max_iter=2000: Allows more iterations for the solver to converge.
+5. max_iter=2000: Allows more iterations for the solver to converge.
 
-random_state=RANDOM_STATE: Makes results more reproducible where randomness is involved.
+6. random_state=RANDOM_STATE: Makes results more reproducible where randomness is involved.
 
 The following functions helped with the following capacilities:
 

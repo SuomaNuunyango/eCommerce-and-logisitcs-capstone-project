@@ -88,7 +88,7 @@ This model performs significantly worse. Its overall accuracy dropped to 57.80%,
 • Missed Cases (3,942): It missed 3,942 cases of `1`, guessing they were `0`.
 • Correct "Returned" (5,222): It successfully caught 5,222 cases of `1`.
 
-The dataset seems to have complex, messy patterns, which the simpler Logistic Regression model just can't grasp. This tells us that the data has non-linear relationships (complex logic loops that a straight mathematical line cannot easily separate.
+The dataset seems to have complex, messy patterns, which the simpler Logistic Regression model just can't grasp. This tells us that the data has non-linear relationships that a straight mathematical line cannot easily separate.
 
 ## 5. How to use the ipynb file
 

@@ -6,7 +6,7 @@ This report documents the performance evaluation of **Model 1- Logistic Regressi
 
 **Python notebook used:** [Model 1 (Logistical Regression)(1).ipynb](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/Model%201%20(Logistical%20Regression).ipynb)  
 **Shared helper module:** [model_utils.py](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/model_utils.py)  
-**Dataset used:** [cleaned_model_dataset.csv]()
+**Dataset used:** [cleaned_model_dataset.csv](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/cleaned_model_dataset.csv)
 
 ## 2. Statistical methodology
 

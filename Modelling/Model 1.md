@@ -69,18 +69,18 @@ X_subtrain, X_val, y_subtrain, y_val = train_test_split(
     random_state=RANDOM_STATE,
     stratify=y_train,)
     
-used for dividing the original training set again:
+code:
 
 80% (X_subtrain, y_subtrain) is used to train models at different sizes.
 
 20% (X_val, y_val) is used to measure validation error.
 
 stratify=y_train helps preserve the target-class proportions so that the test set is kept aside for final evaluation.
-
 fractions = np.linspace(0.1, 1.0, 10). This creates 10 fractions from 10% to 100%. The loop will train a separate model using each fraction of the subtraining data.
 
 
 These lists store the number of training rows and the two error measurements for the model.
+
 sample_sizes = []
 
 training_errors = []

@@ -4,3 +4,4 @@
 4. Go to [Model1Performance.md](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/Model1Performance.md) for Model 1 performance details
 5. Go to [Model2Performance.md](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/Model2Performance.md) for Model 2 performance details
 6. Go to [Comparison.MD](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/Comparison.MD) for Model 1 and Model 2 performance comparison
+7. Go to [Model performance report](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Modelling/Model%20peformance%20report.pdf) for Models recommendation and comparison for porject

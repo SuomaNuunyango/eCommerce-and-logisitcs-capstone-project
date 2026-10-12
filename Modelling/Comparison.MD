@@ -54,7 +54,6 @@ These metrics describe different aspects of performance. For return prediction, 
 | Test ROC-AUC | **0.6088*** | **0.6844** | Random Forest |
 | False positives (FP) | **4,497** | **3,607** | Random Forest (fewer false alarms) |
 | False negatives (FN) | **3,942** | **3,814** | Random Forest (fewer missed returns) |
-| Training/test error curve | **Not provided** | **Not provided** | Cannot compare without the curves |
 
 
 ## 4. Interpretation framework

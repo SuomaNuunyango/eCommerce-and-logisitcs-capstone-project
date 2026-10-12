@@ -9,7 +9,7 @@ This report compares:
 
 Both models predict the binary `return` target (`0` = not returned; `1` = returned) using `cleaned_model_dataset.csv`.
 
-**Important:** A fair comparison requires the same dataset version, target definition, train/test rows, preprocessing rules where appropriate, and metric definitions. Model 1 obtains its data split through `model_utils.py`, while Model 2 creates its split directly in its notebook. Confirm that both use the same 80/20 stratified split and same random seed before treating the test metrics as a direct head-to-head comparison.
+Model 1 obtains its data split through `model_utils.py`, while Model 2 creates its split directly in its notebook. Confirm that both use the same 80/20 stratified split and same random seed before treating the test metrics as a direct head-to-head comparison.
 
 ## 2. Evaluation design and statistical methods
 
@@ -44,84 +44,28 @@ These metrics describe different aspects of performance. For return prediction, 
 
 ## 3. Results comparison
 
-Fill in this table using the printed output from the current runs. Do not replace missing values with estimates or assume that one model is better before comparing the results.
-
 | Metric | Model 1: Logistic Regression | Model 2: Random Forest | Better result (based on metric) |
 |---|---:|---:|---|
-| Best cross-validation ROC-AUC | **0.6062*** | **[Insert result]** | **[Compare]** |
-| Test accuracy | **[Insert result]** | **[Insert result]** | **[Compare]** |
-| Test precision (class 1) | **[Insert result]** | **[Insert result]** | **[Compare]** |
-| Test recall (class 1) | **[Insert result]** | **[Insert result]** | **[Compare]** |
-| Test F1-score (class 1) | **[Insert result]** | **[Insert result]** | **[Compare]** |
-| Test ROC-AUC | **0.6088*** | **[Insert result]** | **[Compare]** |
-| False positives (FP) | **[Insert count]** | **[Insert count]** | **[Interpret cost]** |
-| False negatives (FN) | **[Insert count]** | **[Insert count]** | **[Interpret cost]** |
-| Training/test error curve | **[Summarise curve]** | **[Summarise curve]** | **[Compare generalisation]** |
+| Best cross-validation ROC-AUC | **0.6062*** | **0.6649** | Random Forest |
+| Test accuracy | **0.5780** | **0.6290** | Random Forest |
+| Test precision (class 1) | **0.5373** | **0.5973** | Random Forest |
+| Test recall (class 1) | **0.5698** | **0.5838** | Random Forest |
+| Test F1-score (class 1) | **0.5531** | **0.5905** | Random Forest |
+| Test ROC-AUC | **0.6088*** | **0.6844** | Random Forest |
+| False positives (FP) | **4,497** | **3,607** | Random Forest (fewer false alarms) |
+| False negatives (FN) | **3,942** | **3,814** | Random Forest (fewer missed returns) |
+| Training/test error curve | **Not provided** | **Not provided** | Cannot compare without the curves |
 
-\* The supplied Logistic Regression notebook's markdown records a best cross-validation ROC-AUC of **0.6062** and test ROC-AUC of **0.6088**. Confirm these figures against the final dataset and code run before submission. The supplied Random Forest notebook has no saved outputs, so its numerical results must be filled in after execution.
-
-### Confusion matrix comparison
-
-Record the two confusion matrices, both in label order `[0, 1]`.
-
-**Model 1 — Logistic Regression**
-
-|  | Predicted 0 | Predicted 1 |
-|---|---:|---:|
-| Actual 0 | **[TN]** | **[FP]** |
-| Actual 1 | **[FN]** | **[TP]** |
-
-**Model 2 — Random Forest**
-
-|  | Predicted 0 | Predicted 1 |
-|---|---:|---:|
-| Actual 0 | **[TN]** | **[FP]** |
-| Actual 1 | **[FN]** | **[TP]** |
 
 ## 4. Interpretation framework
 
-Use the actual metrics to complete the statements below:
-
-1. **Overall classification:** Model **[1/2]** had higher test accuracy (**[value]**) compared with **[value]**. This indicates **[interpretation, with any class-imbalance caveat]**.
-2. **Detecting returns:** Model **[1/2]** had higher recall (**[value]**), meaning it detected a larger proportion of returned items. This is important if false negatives are costly.
-3. **Reliability of return alerts:** Model **[1/2]** had higher precision (**[value]**), meaning a larger proportion of its predicted returns were actually returned.
-4. **Balance of precision and recall:** Model **[1/2]** had the higher F1-score (**[value]**), providing the stronger balance between these two measures for the positive class.
-5. **Ranking ability:** Model **[1/2]** had higher test ROC-AUC (**[value]**). Compare this with each model's CV ROC-AUC to assess whether performance appears consistent between cross-validation and the hold-out set.
-6. **Generalisation:** Based on the error curves, **[model]** shows **[small/large]** training-to-validation/test error gap. This is **[consistent/not clearly consistent]** with overfitting. Do not infer overfitting from training error alone.
-7. **Final selection:** Choose Model **[1/2]** if the priority is **[metric/business objective]**, while noting **[trade-off or limitation]**.
-
-## 5. Statistical significance and uncertainty
-
-The supplied notebooks report point estimates and cross-validation scores; they do **not** currently calculate confidence intervals or conduct a formal statistical significance test between the two models. Therefore, do not describe a small metric difference as statistically significant.
-
-For a stronger statistical comparison, evaluate both models on the exact same held-out test rows and consider paired bootstrap confidence intervals for differences in ROC-AUC, F1-score or accuracy. For a paired accuracy comparison, McNemar's test may be appropriate because the two classifiers predict the same test observations. These analyses should be added to the code and reported only after they have actually been calculated. A single train/test split and cross-validation means alone do not establish statistical significance.
-
-## 6. Limitations and validity checks
-
-- **Comparable split:** Model 1 uses `load_model_data()` from `model_utils.py`; Model 2 defines its split in its notebook. Verify identical test rows before making direct comparisons.
-- **Target leakage:** Check that all features are available at the intended time of prediction and that no post-return information is included.
-- **Threshold effects:** Precision, recall, F1 and confusion matrix depend on the classification threshold. ROC-AUC does not use a single threshold.
-- **Class distribution:** Report the class counts or proportions in the dataset and test set; accuracy alone may be misleading when classes are imbalanced.
-- **Reproducibility:** Record the dataset version, random seed, library versions, selected hyperparameters and date of the final run.
-- **No invented results:** Populate all placeholders from the current notebook outputs.
-
-## 7. Code and how to reproduce
+The Random Forest model performed better than Logistic Regression across all reported predictive metrics. It achieved higher cross-validation ROC-AUC (0.6649 vs. 0.6062) and test ROC-AUC (0.6844 vs. 0.6088), suggesting stronger ability to distinguish between returned and not-returned cases. It also had higher test accuracy, precision, recall, and F1-score.
+The Random Forest produced fewer false positives (3,607 vs. 4,497) and fewer false negatives (3,814 vs. 3,942). This means it made fewer incorrect return predictions and missed fewer actual returns. However, both models’ scores indicate there is still substantial room for improvement. Training/test error curves were not provided, so their generalization behavior cannot be compared from the available results.
 
 The comparison is based on the following two notebooks:
 
-- [`Model 1 (Logistical Regression)(1).ipynb`](Model%201%20(Logistical%20Regression)(1).ipynb)
-- [`Model 2 (Random Forest).ipynb`](Model%202%20(Random%20Forest).ipynb)
+- `Model 1 (Logistical Regression)(1).ipynb`
+- `Model 2 (Random Forest).ipynb`
 
-To reproduce the results:
 
-1. Ensure both notebooks use the same `cleaned_model_dataset.csv` and the same target definition.
-2. Update the absolute dataset paths to work on your computer.
-3. Ensure `model_utils.py` is available for Model 1.
-4. Install the dependencies in `requirements.txt`.
-5. Run both notebooks from top to bottom.
-6. Copy the actual test metrics, CV scores, selected parameters and confusion matrices into this report.
-7. Review the generated error curves and complete the interpretation statements using evidence from the results.
 
-## 8. Conclusion
-
-The final conclusion should name the stronger model for the metric that matters most to the returns problem, rather than simply choosing the model with the highest accuracy. State the measured differences, explain the trade-offs between false positives and false negatives, and acknowledge that formal statistical significance has not been tested unless the additional paired analysis is implemented.

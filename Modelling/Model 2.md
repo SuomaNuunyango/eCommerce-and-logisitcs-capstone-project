@@ -44,6 +44,23 @@ confusion_matrix — Counts correct and incorrect predictions by class.
 
 classification_report — Summarizes precision, recall, and F1-score for each class
 
+Setting the target feature apart I used code:
+
+target_column = "return".
+df = df.dropna(subset=[target_column])
+
+Set "return" as the outcome to predict, then remove rows where that outcome is missing. The model needs a known answer for each training.
+
+**Splits the data into:**
+
+80% training data (X_train, y_train) for fitting the model.
+20% test data (X_test, y_test) for evaluating it on data it has not trained on.
+
+random_state=RANDOM_STATE makes the split reproducible by setting it to default of 42.
+
+stratify=y keeps the proportion of returns and non-returns roughly similar in both sets
+
+
 
 
 

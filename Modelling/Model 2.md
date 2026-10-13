@@ -28,7 +28,7 @@ from sklearn module i imported libraries that perform the needed task to preproc
   
 * Pipeline — Chains preprocessing and model steps together, helping ensure the same transformations are applied consistently and preventing data leakage.
 
-** Evaluation metrics include: **
+**Evaluation metrics include:**
 
 accuracy_score — Fraction of all predictions that are correct.
 

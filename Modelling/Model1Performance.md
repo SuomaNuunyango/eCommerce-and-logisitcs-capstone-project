@@ -76,9 +76,11 @@ The notebook also plots training and validation classification error against tra
 This model performs significantly worse. Its overall accuracy dropped to 57.80%, which is barely any better than flipping a coin.
 
 • Accuracy: 57.80% (0.5780)
+
 	• Out of the `20,000` test cases, the model guessed correctly about 58% of the time. It is noticeably worse than the Random Forest models (which at 62%).
   
 • ROC-AUC: 60.88% (0.6088)
+
 	• At 0.61, this model has an incredibly weak ability to separate the "Returned" group from the "Not Returned" group.
 
 • Confusion Matrix

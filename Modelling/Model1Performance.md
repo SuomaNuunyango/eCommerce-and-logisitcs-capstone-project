@@ -86,7 +86,7 @@ This model performs significantly worse. Its overall accuracy dropped to 57.80%,
 • Confusion Matrix
 
 • Correct "Not Returned" (6,339): It successfully identified 6,339 cases of `0`.
-• False Alarms (4,497): It guessed `1` (Returned) when the true answer was actually `0`. This is a major weak spot—it triggered way more false alarms than XGBoost did (which only had about 3,383).
+• False Alarms (4,497): It guessed `1` (Returned) when the true answer was actually `0`. 
 • Missed Cases (3,942): It missed 3,942 cases of `1`, guessing they were `0`.
 • Correct "Returned" (5,222): It successfully caught 5,222 cases of `1`.
 

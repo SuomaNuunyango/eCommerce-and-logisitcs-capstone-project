@@ -34,8 +34,36 @@ Full details are found on [RAAIDD Log](https://github.com/SuomaNuunyango/eCommer
 ---
 ## Repository setup structure
 
-|
-
+eCommerce-and-logistics-capstone-project/
+├── README.md
+├── Motivation.md
+├── Problem statement.md
+├── LICENSE
+├── Datasets
+│   ├── Datasets/BADS_WS1920_known.csv
+│   ├── Datasets/BADS_WS1920_unknown.csv
+│   ├── Data type table eCommerce and logisitics Capstone project.pdf
+│   ├── Literature review Capstone project.pdf
+│   ├── RAAIDD log.ipynb
+│   ├── README.md
+├── Experimental results
+├── Experimental set up
+├── Experimental extractions
+├── Final modelling adjustments
+├── Model deployment
+├── Modelling and Model performance
+├── Datasets/BADS_WS1920_known.csv
+│   ├── Comparison.MD
+│   ├── Model 1 (logistic Regression) code
+│   ├── Model 1.md
+│   ├── Model 2 (Random Forest) code
+│   ├── Model 2.md
+│   ├── Model performance report
+│   ├── Cleaned model dataset
+│   ├── Model_utils.py
+├── Preprocessing
+├── Statisitcal heplder and comparison
+├── Visualisation
 
 
 ---

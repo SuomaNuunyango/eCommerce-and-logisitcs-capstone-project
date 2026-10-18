@@ -36,6 +36,7 @@ Full details are found on [RAAIDD Log](https://github.com/SuomaNuunyango/eCommer
 
 The structure is to be updated as folders get updated.
 
+```text
 eCommerce-and-logistics-capstone-project/
 ├── README.md
 ├── Motivation.md
@@ -72,6 +73,7 @@ eCommerce-and-logistics-capstone-project/
 │   └── requirements.txt
 ├── Statisitcal heplder and comparison/
 └── Visualisation/
+```
 
 ---
 # License

@@ -25,7 +25,7 @@ Find the full details of the problem statement on the [Problem statement.md](htt
 
 **Data requested**
 
-Data request for project are detailed on the [data type table report](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Datasets/Data%20type%20table%20eCommerce%20and%20logisitics%20Capstone%20project.pdf).
+Data request for project are detailed on the [Data type table report](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Datasets/Data%20type%20table%20eCommerce%20and%20logisitics%20Capstone%20project.pdf).
 
 **Project RAAIDD log**
 

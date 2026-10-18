@@ -34,25 +34,26 @@ Full details are found on [RAAIDD Log](https://github.com/SuomaNuunyango/eCommer
 ---
 ## Repository setup structure
 
+The structure is to be updated as folders get updated.
+
 eCommerce-and-logistics-capstone-project/
 ├── README.md
 ├── Motivation.md
 ├── Problem statement.md
 ├── LICENSE
-├── Datasets
-│   ├── Datasets/BADS_WS1920_known.csv
-│   ├── Datasets/BADS_WS1920_unknown.csv
+├── Datasets/
+│   ├── BADS_WS1920_known.csv
+│   ├── BADS_WS1920_unknown.csv
 │   ├── Data type table eCommerce and logisitics Capstone project.pdf
 │   ├── Literature review Capstone project.pdf
 │   ├── RAAIDD log.ipynb
-│   ├── README.md
-├── Experimental results
-├── Experimental set up
-├── Experimental extractions
-├── Final modelling adjustments
-├── Model deployment
-├── Modelling and Model performance
-├── Datasets/BADS_WS1920_known.csv
+│   └── README.md
+├── Experimental results/
+├── Experimental set up/
+├── Experimental extractions/
+├── Final modelling adjustments/
+├── Model deployment/
+├── Modelling and Model performance/
 │   ├── Comparison.MD
 │   ├── Model 1 (logistic Regression) code
 │   ├── Model 1.md
@@ -61,10 +62,16 @@ eCommerce-and-logistics-capstone-project/
 │   ├── Model performance report
 │   ├── Cleaned model dataset
 │   ├── Model_utils.py
-├── Preprocessing
-├── Statisitcal heplder and comparison
-├── Visualisation
-
+│   └── requirments.txt
+├── Preprocessing/
+│   ├── Feature engineering code
+│   ├── Feature engineering.md
+│   ├── Preprocessing code
+│   ├── Preporcessing.md
+│   ├── README.md
+│   └── requirements.txt
+├── Statisitcal heplder and comparison/
+└── Visualisation/
 
 ---
 # License

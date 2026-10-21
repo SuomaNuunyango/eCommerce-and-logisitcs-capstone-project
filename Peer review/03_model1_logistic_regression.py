@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report, roc_auc_score
 def train_model1():
     print("Executing Step 3: Training Model 1 (Logistic Regression)...")
     
-    df = pd.read_csv("data/processed/engineered_returns_features.csv")
+    df = pd.read_csv("cleaned_returns_data.csv")
     
     drop_cols = ['Customer_ID', 'Return_Reason', 'label']
     X = df.drop(columns=[c for c in drop_cols if c in df.columns])

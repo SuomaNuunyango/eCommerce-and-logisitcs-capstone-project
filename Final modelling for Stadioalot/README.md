@@ -74,7 +74,7 @@ The code performs a final preprocessing step on the five datasets by standardisi
 
 It preserves the original content of free-text fields, such as customer reviews and return policies, while standardising other text labels to lowercase. 
 
-It then saves each processed dataset as a new CSV file named preprocessed_returns.csv, preprocessed_reviews.csv, preprocessed_deliveries.csv, preprocessed_inventory.csv, and preprocessed_policies.csv. 
+It then saves each processed dataset as a new CSV file named `preprocessed_returns.csv`, `preprocessed_reviews.csv`, `preprocessed_deliveries.csv`, `preprocessed_inventory.csv`, and `preprocessed_policies.csv`. 
 
 Finally, it reports the row counts, output file locations, data types and any missing or unparseable dates. The purpose is to ensure that the datasets have consistent formats and appropriate data types, making them more reliable and ready for further analysis.
 
@@ -85,6 +85,53 @@ The code checks the quality of date values in the preprocessed customer reviews 
 Finally, it calculates and prints the number and percentage of unparseable dates in each dataset. 
 
 If a specified column is not found, it displays the available column names and moves on to the next file. The purpose is to validate date formatting and identify potential data-quality issues before further analysis. Note that the check counts existing missing values as well as invalid date values, so it does not distinguish between the two.
+
+Python row 6
+
+The code handles missing or invalid dates for deliveries, it converts the dispatch and expected delivery dates to datetime format, fills missing dispatch dates by subtracting three days from the expected delivery date, and saves the updated dataset. 
+
+It then reports how many review rows were removed and how many dispatch dates remain missing. The purpose is to improve date completeness and consistency so the datasets are more suitable for further analysis.
+
+Python row 7
+
+The code verifies whether date parsing was successful in the preprocessed customer reviews and delivery datasets. It loads each CSV file, removes whitespace from column names, and checks whether the specified date column exists. 
+
+It then attempts to convert the date values into datetime format and counts any values that are missing or cannot be parsed. 
+
+Finally, it reports the number and percentage of unparsed dates for each file, or lists the available columns if the expected column is not found. The purpose is to confirm the effectiveness of the earlier date cleaning steps and identify any remaining date quality issues.
+
+Python row 8
+
+The code identifies and removes duplicate records from the preprocessed delivery dataset. It loads the CSV file, counts the duplicate rows while keeping the first occurrence, and removes the additional duplicates.
+
+Python row 9
+
+The code links the delivery and sales returns datasets using the shared `order_id` column. 
+
+It first checks that both files contain this column, then standardises the order IDs by converting them to strings and removing extra whitespace to reduce matching errors. It identifies all order IDs appearing in the returns dataset and creates a new column called `return_flag`, which I set as target feature. 
+
+In the delivery dataset: 1 indicates that an order was returned, while 0 indicates that it was not returned. 
+
+The updated delivery dataset is saved to the original file, and the code prints the counts of returned and non-returned orders. The purpose is to identify returned orders within the delivery data, enabling further analysis of return patterns and delivery performance.
+
+
+Python row 10
+
+The code builds and tunes a machine learning model (Random Forest) to predict whether a delivered order will be returned.  
+
+It loads and validates the delivery dataset, filters for orders delivered between January and June 2026 and creates features such as `courier partner`, `delivery region`, `transit time`, `lateness` and `dispatch date and time`. 
+
+It uses a chronological split to separate the data into training (January–April), validation (May) and test (June) sets,  
+
+(Why?) this simulates predictions on future orders. A preprocessing pipeline handles missing numeric and categorical values and converts categorical variables into a format suitable for machine learning. 
+
+A Random Forest classifier is then tuned using grid search and three-fold stratified cross-validation on the training data, with ROC-AUC as the selection metric. 
+
+Finally, the code displays the best cross-validation ROC-AUC score and selected hyperparameters. The purpose is to develop a model that identifies factors associated with returns and assesses its potential predictive performance. 
+
+
+
+
 
 
 

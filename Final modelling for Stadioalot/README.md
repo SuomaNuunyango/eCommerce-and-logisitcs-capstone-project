@@ -15,3 +15,32 @@ Libraries to be imported for the code before running it are:
 `scikit-learn=1.9.1`
 
 `seaborn=0.13.2`
+
+Python row 1
+
+This code is designed to load five CSV files into Python using pandas and perform an initial data quality check on each file. 
+
+There are two imports here:
+
+from pathlib import Path
+
+`pathlib` is a Python library for working with file and folder paths.
+
+`Path` helps you construct paths in a way that works across different operating systems.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

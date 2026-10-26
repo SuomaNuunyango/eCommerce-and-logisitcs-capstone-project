@@ -39,7 +39,16 @@ The list of raw data is contained in FILES = {
     "inventory": "table4_inventory.csv",
     "policies": "table5_return_policies.csv",}
 
-    
+ I then created a empty dataframe to store successfully loaded files. dataframes = {
+    "returns": returns_dataframe,
+    "reviews": reviews_dataframe,
+    "deliveries": deliveries_dataframe,
+    "inventory": inventory_dataframe,
+    "policies": policies_dataframe} 
+
+Dataset was inspected for missing values in each file. Then print displays the information about the dataset including counts and percentages of missing values.
+
+
 
 
 

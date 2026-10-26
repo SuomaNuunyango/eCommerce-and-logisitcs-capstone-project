@@ -48,9 +48,43 @@ The list of raw data is contained in FILES = {
 
 Dataset was inspected for missing values in each file. Then print displays the information about the dataset including counts and percentages of missing values.
 
+Python row 2
 
+The code cleans and standardises the delivery dataset by correcting column names, formatting courier partner names consistently, converting delivery dates into a suitable format, and removing records with missing required information. It then calculates the absolute difference between expected and actual delivery dates in days. 
 
+Finally, it groups the data by courier partner and calculates the mean delivery time difference, the most common difference, and the number of records for each courier. 
 
+The purpose is to make the delivery data consistent and summarise delivery-date differences across courier partners, allowing for easier comparison of delivery performance.
+
+Python row 13
+
+After loading the five CSV datasets, I standardised the column names filled the missing value using imputation procedures. 
+
+For sales returns, it replaces missing or blank refund methods with “Other”; for delivery data, it standardises courier names, converts delivery dates, and estimates missing actual delivery dates using each courier’s average delay; 
+
+for inventory, it removes rows with missing expiration dates
+
+for customer reviews, it fills missing review text using the most frequent existing review text for the corresponding star rating. 
+
+It saves the processed datasets as new preprocessed CSV files and reports any remaining missing values by displaying each dataset’s dimensions and missing-value statistics. The code also checks for required columns and handles missing files or processing errors. Its overall purpose is to improve data consistency and completeness while preserving the original files, although some imputation methods may introduce assumptions that should be evaluated before further analysis.
+
+Python row 4
+
+The code performs a final preprocessing step on the five datasets by standardising text formatting, preserving IDs as strings, converting date columns to datetime format, assigning appropriate numeric data types and normalising Boolean values into True and False. 
+
+It preserves the original content of free-text fields, such as customer reviews and return policies, while standardising other text labels to lowercase. 
+
+It then saves each processed dataset as a new CSV file named preprocessed_returns.csv, preprocessed_reviews.csv, preprocessed_deliveries.csv, preprocessed_inventory.csv, and preprocessed_policies.csv. 
+
+Finally, it reports the row counts, output file locations, data types and any missing or unparseable dates. The purpose is to ensure that the datasets have consistent formats and appropriate data types, making them more reliable and ready for further analysis.
+
+Python row 5
+
+The code checks the quality of date values in the preprocessed customer reviews and delivery datasets. It removes any leading or trailing whitespace from column names, and verifies that the specified date column exists. It then convert the values in that column into datetime format, counting any missing or unparseable dates. 
+
+Finally, it calculates and prints the number and percentage of unparseable dates in each dataset. 
+
+If a specified column is not found, it displays the available column names and moves on to the next file. The purpose is to validate date formatting and identify potential data-quality issues before further analysis. Note that the check counts existing missing values as well as invalid date values, so it does not distinguish between the two.
 
 
 

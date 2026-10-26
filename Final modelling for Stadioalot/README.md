@@ -28,7 +28,18 @@ from pathlib import Path
 
 `Path` helps you construct paths in a way that works across different operating systems.
 
+The "." means the current working directory (the folder Python is currently working in).
 
+`DATA_DIR` that represents the folder where the CSV files are expected to be located.
+
+The list of raw data is contained in FILES = {
+    "returns": "table1_sales_returns.csv",
+    "reviews": "table2_customer_reviews.csv",
+    "deliveries": "table3_delivery_data.csv",
+    "inventory": "table4_inventory.csv",
+    "policies": "table5_return_policies.csv",}
+
+    
 
 
 

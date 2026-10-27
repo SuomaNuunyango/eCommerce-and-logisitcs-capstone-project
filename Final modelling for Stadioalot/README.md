@@ -147,7 +147,7 @@ It generates a confusion matrix and an ROC curve for the June test set to show h
 
 It also extracts and plots the 15 most important features used by the model to make predictions. 
 
-Finally, it saves the trained model `pipeline`, `feature list`, `target variable`, and `prediction timing` information into a `.joblib` file so the model can be reused later without retraining. The purpose is to communicate the model’s predictive performance, understand which features contribute most to its decisions, and preserve the trained model for future use.
+Finally, it saves the trained model `pipeline`, `feature list`, `target variable`, and `prediction timing` information into a [`.joblib`](https://github.com/SuomaNuunyango/eCommerce-and-logisitcs-capstone-project/blob/main/Final%20modelling%20for%20Stadioalot/return_flag_random_forest.joblib) file so the model can be reused later without retraining. The purpose is to communicate the model’s predictive performance, understand which features contribute most to its decisions, and preserve the trained model for future use.
 
 
 
